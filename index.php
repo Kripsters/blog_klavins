@@ -5,9 +5,13 @@
 
 require "functions.php";
 require "Database.php";
+
+$config = require("config.php");
 //include
 
-$db = new Database();
+
+
+$db = new Database($config);
 $posts = $db
             ->execute("SELECT * FROM posts")
             ->fetchAll();
