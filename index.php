@@ -1,19 +1,16 @@
 <?php
 
+// Šis fails ir, lai izvadītu datus no datubāzes uz
+// lapu
+
 require "functions.php";
+require "Database.php";
 //include
 
-echo "Hello Cruel World";
-
-$connection_string = "mysql:host=localhost;dbname=blog_klavins;user=root;password=;charset=utf8mb4";
-$pdo = new PDO($connection_string);
-
-//Sagatabot SQL izpildei
-$query = $pdo->prepare("SELECT * FROM posts");
-//Izpildit SQL
-$query->execute();
-//Dabut rezultatus
-$posts = $query->fetchAll(PDO::FETCH_ASSOC);
+$db = new Database();
+$posts = $db
+            ->execute("SELECT * FROM posts")
+            ->fetchAll();
 
 echo "<ul>";
 foreach ($posts as $post) {
