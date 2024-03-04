@@ -23,7 +23,6 @@ class Database {
 
     public function execute($query_string) {
         
-        echo "<h1> I HAVE COVID25 </h1>";
 
         //Sagatabot SQL izpildei
         $query =$this->pdo->prepare($query_string);
