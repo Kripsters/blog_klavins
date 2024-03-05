@@ -10,30 +10,43 @@ $config = require("config.php");
 //include
 
 
-$query = "SELECT * FROM posts";
-if (isset($_GET["id"])) {
-    if ($_GET["id"] == NULL) {
-        $query = "SELECT * FROM posts";
+
+
+$query = "SELECT * FROM posts JOIN categories ON posts.category_id = categories.id";
+
+$params = [];
+if (isset($_GET["id"]) && $_GET["id"] != "") {
+    $id = $_GET["id"];    
+    $query .= " WHERE posts.id=:id";
+    $params = [":id" => $id];
+}
+
+if (isset($_GET["cat_name"]) && $_GET["cat_name"] != "") {
+    if (isset($_GET["id"]) && $_GET["id"] != "") {
+        $cat_name = $_GET["cat_name"];
+        $query .= " AND name = :cat_name";
+        $params = [":id" => $id, ":cat_name" => $cat_name];
     } else {
-    $id = $_GET["id"];
-    $query = "SELECT * FROM posts WHERE id=$id";
-}}
+        $cat_name = $_GET["cat_name"];
+        $query .= " WHERE name = :cat_name";
+        $params = [":cat_name" => $cat_name];
+    }
+}
 
 $db = new Database($config);
 $posts = $db
-            ->execute($query)
+            ->execute($query, $params)
             ->fetchAll();
 
 
 echo "<form>"; 
-echo "<input name='id'/>"; 
+echo "<p>id:</p><input name='id'/>"; 
+echo "<p>category:</p><input name='cat_name'/>"; 
+echo "<br/> <br/>";
 echo "<button>Submit</button>"; 
 echo "</form>"; 
 
-
-
 echo "<h1> Posts </h1>";
-echo "<h2> I HAVE COVID25 </h2>";
 echo "<ul>";
 foreach ($posts as $post) {
     echo "<li>".$post["title"]."</li>";

@@ -21,13 +21,11 @@ class Database {
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    public function execute($query_string) {
-        
-
+    public function execute($query_string, $params) {
         //Sagatabot SQL izpildei
         $query =$this->pdo->prepare($query_string);
         //Izpildit SQL
-        $query->execute();
+        $query->execute($params);
         //atgriezy rezultatus
         return $query;
     }

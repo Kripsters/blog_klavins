@@ -1,13 +1,38 @@
 /*
-CREATE DATABASE blog_klavins;
-
-CREATE TABLE posts (
+CREATE TABLE categories (
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-title VARCHAR(255) NOT NULL
+name VARCHAR(255) NOT NULL,
+description TEXT
 );
 */
-INSERT INTO posts 
-(title)
+/*
+INSERT INTO categories
+(name)
 VALUES
-("My First Blog Post"),
-("My Second Blog Post");
+("sport"),
+("music"),
+("food");
+*/
+/*
+ALTER TABLE posts
+ADD category_id INT NOT NULL;
+*/
+/*
+ALTER TABLE posts
+ADD COLUMN category_id INT AFTER title,
+ADD FOREIGN KEY (category_id) REFERENCES categories(id);
+*/
+/*
+UPDATE posts
+SET category_id = 1
+WHERE id = 1;
+*/
+/*
+UPDATE posts
+SET category_id = 3
+WHERE id = 2;
+*/
+SELECT * FROM posts
+JOIN categories
+ON posts.category_id = categories.id;
+WHERE posts.id = 1;
