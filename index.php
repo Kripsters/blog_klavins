@@ -40,8 +40,9 @@ $posts = $db
 
 
 echo "<form>"; 
-echo "<p>id:</p><input name='id'/>"; 
-echo "<p>category:</p><input name='cat_name'/>"; 
+echo "<p>id:</p><input name='id' value='" . ($_GET["id"] ?? "") . "'/>"; 
+
+echo "<p>category:</p><input name='cat_name' value='" . ($_GET["cat_name"] ?? "") . "'/>"; 
 echo "<br/> <br/>";
 echo "<button>Submit</button>"; 
 echo "</form>"; 

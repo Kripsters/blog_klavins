@@ -34,5 +34,4 @@ WHERE id = 2;
 */
 SELECT * FROM posts
 JOIN categories
-ON posts.category_id = categories.id;
-WHERE posts.id = 1;
+ON posts.category_id = categories.id
