@@ -6,6 +6,7 @@
 require "functions.php";
 require "Database.php";
 
+
 $config = require("config.php");
 //include
 
@@ -39,17 +40,5 @@ $posts = $db
             ->fetchAll();
 
 
-echo "<form>"; 
-echo "<p>id:</p><input name='id' value='" . ($_GET["id"] ?? "") . "'/>"; 
-
-echo "<p>category:</p><input name='cat_name' value='" . ($_GET["cat_name"] ?? "") . "'/>"; 
-echo "<br/> <br/>";
-echo "<button>Submit</button>"; 
-echo "</form>"; 
-
-echo "<h1> Posts </h1>";
-echo "<ul>";
-foreach ($posts as $post) {
-    echo "<li>".$post["title"]."</li>";
-}
-echo "</ul>";
+require "index.view.php";
+?>
