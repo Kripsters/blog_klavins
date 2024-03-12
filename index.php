@@ -40,5 +40,6 @@ $posts = $db
             ->fetchAll();
 
 
-require "index.view.php";
+$title = "No!";
+require "views/index.view.php";
 ?>
