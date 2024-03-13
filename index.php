@@ -1,45 +1,22 @@
 <?php
 
-// Šis fails ir, lai izvadītu datus no datubāzes uz
-// lapu
-
 require "functions.php";
-require "Database.php";
 
+$url_array = parse_url($_SERVER["REQUEST_URI"]);
+$url = $url_array["path"];
+//dd(parse_url($_SERVER["REQUEST_URI"]));
 
-$config = require("config.php");
-//include
-
-
-
-
-$query = "SELECT * FROM posts JOIN categories ON posts.category_id = categories.id";
-
-$params = [];
-if (isset($_GET["id"]) && $_GET["id"] != "") {
-    $id = $_GET["id"];    
-    $query .= " WHERE posts.id=:id";
-    $params = [":id" => $id];
+if ($url == "/") {
+    require "controllers/index.php";
 }
 
-if (isset($_GET["cat_name"]) && $_GET["cat_name"] != "") {
-    if (isset($_GET["id"]) && $_GET["id"] != "") {
-        $cat_name = $_GET["cat_name"];
-        $query .= " AND name = :cat_name";
-        $params = [":id" => $id, ":cat_name" => $cat_name];
-    } else {
-        $cat_name = $_GET["cat_name"];
-        $query .= " WHERE name = :cat_name";
-        $params = [":cat_name" => $cat_name];
-    }
+
+if ($url == "/about") {
+    require "controllers/about.php";
 }
 
-$db = new Database($config);
-$posts = $db
-            ->execute($query, $params)
-            ->fetchAll();
+if ($url == "/story") {
+    require "controllers/story.php";
+}
 
-
-$title = "No!";
-require "views/index.view.php";
 ?>
