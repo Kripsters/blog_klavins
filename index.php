@@ -9,14 +9,14 @@ $url = $url_array["path"];
 if ($url == "/") {
     require "controllers/index.php";
 }
-
-
-if ($url == "/about") {
+elseif ($url == "/about") {
     require "controllers/about.php";
 }
-
-if ($url == "/story") {
+elseif ($url == "/story") {
     require "controllers/story.php";
+} else {
+    http_response_code(404);
+    require "controllers/404.php";
 }
 
 ?>
