@@ -4,13 +4,11 @@
 // lapu
 
 require "./Database.php";
-
-
 $config = require("./config.php");
 //include
 
 
-$query = "SELECT * FROM posts JOIN categories ON posts.category_id = categories.id";
+$query = "SELECT * FROM posts";
 
 $params = [];
 if (isset($_GET["id"]) && $_GET["id"] != "") {
