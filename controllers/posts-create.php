@@ -6,8 +6,24 @@ $db = new Database($config);
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//if ($_SERVER["REQUEST_METHOD"] == "POST" && trim($_POST["title"]) != "" && $_POST["category-id"] <= 3 && strlen($_POST["title"]) <= 255) {
     // dd("Pos");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $errors = [];
+
+
+    if(trim($_POST["title"]) == "") {
+        $errors["title"] = "no title";
+    }
+    if(strlen($_POST["title"]) > 255) {
+        $errors["title"] = "title too long (255char)";
+    }
+    if($_POST["cat_id"] >= 3) {
+        $errors["cat_id"] = "wrong cat-id";
+    }
+    if (empty($errors)) {
+
+
     $query = "INSERT INTO posts (title, category_id) 
               VALUES (:title, :category_id);";
               $params = [
@@ -17,13 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $db->execute($query, $params);
               header("Location: /");
               die();
-}
+            }
+} 
 
-// if (isset($_GET["title"]) && $_GET["title"] != "" && isset($_GET["category-id"]) && $_GET["category-id"] != "") {
-//     $post_title = $_GET["id"];    
-//     $query .= " ("", 2)";
-//     $params = [":id" => $id];
-// }
 
 
 

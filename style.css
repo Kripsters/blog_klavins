@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(230, 173, 221);
+    background-color: rgb(255, 92, 124);
   }
   
   h1 {
@@ -9,7 +9,7 @@ body {
   p {
     font-family: cursive;
     font-size: 20px;
-    color:greenyellow;
+    color:rgb(226, 255, 182);
   }
 
   li {
@@ -18,9 +18,18 @@ body {
   }
 
   a {
-    color: rgb(255, 145, 167)
+    color: rgb(253, 117, 145)
   }
 
   label {
     color: greenyellow;
+    position:relative;
+    display:inline-block;
+  }
+
+  .invalid-data {
+    position: absolute;
+    color: red;
+    font-size:8em;
+    top:100%;
   }
