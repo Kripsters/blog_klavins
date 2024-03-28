@@ -58,5 +58,5 @@ if(isset($query) || isset($params) ){
 
 
 $title = "NO!";
-require "views/posts.view.php";
+require "views/posts/index.view.php";
 ?>

@@ -33,3 +33,13 @@ body {
     font-size:8em;
     top:100%;
   }
+
+  .deleteform {
+    display:inline-block;
+
+  }
+
+  .test {
+    color:red;
+    background-color:rgb(255, 111, 135);
+  }

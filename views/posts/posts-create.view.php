@@ -1,6 +1,6 @@
 <?php 
-require "components/head.php";
-require "components/navbar.php";
+require "views/components/head.php";
+require "views/components/navbar.php";
 ?>
     <h1> Create a Post </h1>
     <form method="POST">
@@ -23,5 +23,5 @@ require "components/navbar.php";
         <button>Submit</button>
     </form>
 <?php
-require "components/footer.php";  
+require "views/components/footer.php";  
 ?>
