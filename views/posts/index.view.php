@@ -12,7 +12,8 @@ require "views/components/navbar.php";
     <h1> Posts </h1>
     <ul>
         <?php foreach ($posts as $post) { ?>
-            <li><?= htmlspecialchars($post["title"])?>
+            <li>
+            <a href="/show?id=<?= $post["id"] ?>"> <?= htmlspecialchars($post["title"])?> 
             <form class="deleteform" method="POST" action="/delete">
             <button class="test" name="id" value="<?= $post["id"] ?>">Delete</button>
             </form>
