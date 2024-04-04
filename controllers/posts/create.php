@@ -1,7 +1,7 @@
 <?php
-require "./Database.php";
+require "Validator.php";
+require "Database.php";
 $config = require("./config.php");
-//dd($_SERVER);
 $db = new Database($config);
 
 
@@ -12,12 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
 
 
-    if(trim($_POST["title"]) == "") {
-        $errors["title"] = "no title";
+    if(!Validator::string($_POST["title"], min:1, max:255)) {
+        $errors["title"] = "no title or too long";
     }
-    if(strlen($_POST["title"]) > 255) {
-        $errors["title"] = "title too long (255char)";
-    }
+
     if($_POST["cat_id"] >= 3) {
         $errors["cat_id"] = "wrong cat-id";
     }
