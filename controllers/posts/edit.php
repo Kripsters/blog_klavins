@@ -4,10 +4,6 @@ require "Database.php";
 $config = require("./config.php");
 $db = new Database($config);
 
-
-
-//if ($_SERVER["REQUEST_METHOD"] == "POST" && trim($_POST["title"]) != "" && $_POST["category-id"] <= 3 && strlen($_POST["title"]) <= 255) {
-    // dd("Pos");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
 
@@ -22,11 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errors)) {
 
 
-    $query = "INSERT INTO posts (title, category_id) 
-              VALUES (:title, :category_id);";
+    $query = "UPDATE posts 
+              SET title = :title, category_id = :cat_id
+              WHERE id = :id";
               $params = [
                   ":title" => $_POST["title"],
-                  ":category_id" => $_POST["cat_id"]
+                  ":cat_id" => $_POST["cat_id"],
+                  ":id" => $_POST["id"]
               ];
               $db->execute($query, $params);
               header("Location: /");
@@ -35,7 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } 
 
 
+$query = "SELECT * FROM posts WHERE id=:id";
+// dd($_GET["id"]);
+$params = [":id"  => $_GET["id"]];
 
+$post = $db->execute($query, $params)->fetch();
 
-$title = "Create stuff";
-require "views/posts/posts-create.view.php";
+$title = "Editing";
+require "views/posts/edit.view.php";
