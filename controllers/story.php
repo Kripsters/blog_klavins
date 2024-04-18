@@ -1,4 +1,5 @@
 <?php
+auth();
 
 // Ieraksti bloga vietnes nosaukumu!
 $title = "Metal Blog Solid - Snake Eater";

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require "routes.php";
 
 $url_array = parse_url($_SERVER["REQUEST_URI"]);

@@ -2,6 +2,12 @@
 require "views/components/head.php";
 require "views/components/navbar.php";
 ?>
+
+    <h2> Logged in as <?= $_SESSION["email"] ?? "no one!"?> </h2>
+
+    <form action="/logout" method="POST">
+        <button>Logout</button>
+    </form>
     <form>
         <p>id:</p><input name='id' value='<?=($_GET["id"] ?? "") ?>'/>
         <p>category:</p><input name='cat_name' value='<?=($_GET["cat_name"] ?? "")?>'/>
@@ -13,13 +19,13 @@ require "views/components/navbar.php";
     <ul>
         <?php foreach ($posts as $post) { ?>
             <li>
-            <a href="/show?id=<?= $post["id"] ?>"> <?= htmlspecialchars($post["title"])?> 
+            <a href="/show?id=<?= $post["id"] ?>"> <?= htmlspecialchars($post["title"])?> </a> 
             <form class="deleteform" method="POST" action="/delete">
             <button class="test" name="id" value="<?= $post["id"] ?>">Delete</button>
             </form>
             </li>
         <?php } ?>
-
+            
     </ul>
 <?php 
 require "views/components/footer.php";
